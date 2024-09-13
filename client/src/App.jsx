@@ -16,11 +16,11 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/sign-in" element={<Signin />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/Signin" element={<Signin />} />
+        <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/projects" element={<Projects />} />
-        <Route path="*" element={<div>404 Not Found</div>} /> {/* Fallback route */}
+        
       </Routes>
     </BrowserRouter>
   );
