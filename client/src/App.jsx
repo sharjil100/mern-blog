@@ -16,11 +16,10 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/Signin" element={<Signin />} />
-        <Route path="/SignUp" element={<SignUp />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/signin" element={<Signin />} /> {/* Updated to lowercase */}
+        <Route path="/signup" element={<SignUp />} />  {/* Updated to lowercase */}
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/projects" element={<Projects />} />
-        
       </Routes>
     </BrowserRouter>
   );
