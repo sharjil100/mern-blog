@@ -117,11 +117,13 @@ export default function Header() {
           </Button>
 
           {/* Sign In button */}
+         {currentPath === "/" && ( 
           <Link to="/Signin">
             <Button className="text-white bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 hover:bg-gradient-to-br focus:ring-4 focus:ring-cyan-300 dark:focus:ring-cyan-800 rounded-md px-3 py-1 text-sm outline outline-2 outline-white">
               Sign In
             </Button>
           </Link>
+         )}
         </div>
       </div>
 
