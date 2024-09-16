@@ -1,6 +1,9 @@
 import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 import { useState } from 'react';
 import { Link , useNavigate} from 'react-router-dom';
+import { signInStart, signInSuccess, signInFailure } from './user/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 export default function SignIn() {
   const [formData, setFormData] = useState({
@@ -9,8 +12,8 @@ export default function SignIn() {
     password: ''
   });
 
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const {loading, error: errorMessage} = useSelector(state => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -20,12 +23,11 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if ( !formData.email || !formData.password) {
-      return setErrorMessage('Please fill out the fields.');
+      return dispatch(signInFailure('Please fill all the fields'));
     }
     
     try {
-      setLoading(true);
-      setErrorMessage(null);
+      dispatch(signInStart());
       const res = await fetch('/api/auth/signin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -34,26 +36,21 @@ export default function SignIn() {
 
       const data = await res.json();
 
-      if (res.ok) {
+      if (data.success === false) {
         // Handle success (e.g., redirect or show success message)
-        console.log('Success:', data);
-        setLoading(false);
+        dispatch(signInFailure(data.message));
+      }
+      
         if(res.ok) {
+          dispatch(signInSuccess(data));
           navigate('/');
         }
-      } else {
-        // Handle server-side validation errors or other issues
-        setErrorMessage(data.message || 'An error occurred.');
-        setLoading(false);
-      }
+       
     } catch (error) {
       // Handle network errors or other issues
-      setErrorMessage('Network error: ' + error.message);
-      setLoading(false);
-    } finally {
-      setLoading(false);
-    }
-  };
+      dispatch(signInFailure(error.message));
+      };
+};
 
   return (
     <div className="min-h-screen mt-20">

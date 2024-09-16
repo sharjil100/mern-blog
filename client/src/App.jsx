@@ -6,7 +6,8 @@ import Signin from './pages/Signin';
 import Dashboard from './pages/Dashboard';
 import Projects from './pages/Projects';
 
-import React from 'react';
+
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 
