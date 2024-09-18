@@ -8,10 +8,12 @@ import projects from './pages/projects'
 
 
 import React from 'react'
+import Header from './components/Header'
 
 export default function App() {
   return (
     <BrowserRouter>
+    <Header/>
       <Routes>
       < Route path="/" element={<Home />}/>
       < Route path="/about" element={<About />}/>
@@ -20,7 +22,7 @@ export default function App() {
       < Route path="/dashboard" element={<Dashboard />}/>
       < Route path="/projects" element={<projects />}/>
       </Routes>
-      
     </BrowserRouter>
+    
   )
 }
